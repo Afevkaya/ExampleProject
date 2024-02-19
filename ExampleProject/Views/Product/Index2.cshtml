@@ -1,0 +1,9 @@
+@model List<ExampleProject.Models.Product>
+
+<h3>Temp Data Gösterim (Actionlar arası veri taşıma)</h3>
+<ul>
+    @foreach(var product in Model)
+    {
+        <li>@product.Name</li>
+    }
+</ul>
