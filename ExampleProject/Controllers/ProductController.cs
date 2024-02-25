@@ -1,5 +1,6 @@
 using System.Text.Json;
 using ExampleProject.Models;
+using ExampleProject.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleProject.Controllers;
@@ -64,14 +65,39 @@ public class ProductController : Controller
 
     #endregion
 
-
-
     #region GetProducts
     public IActionResult GetProducts()
     {
-        return View();
+        var product = new Product 
+        {
+            Id = 1,
+            Name = "A Product",
+            Quantity = 15
+        };
+
+        var user = new User 
+        {
+            Id = 1,
+            Name = "Ahmet",
+            LastName = "Evkaya"
+        };
+
+        // Birden fazla veriyi View tarafına taşımanın en uygun iki yolu vardır
+        // 1- ViewModel --> Taşınacak veriler için ortak bir sınıf oluşturmak
+        // var userProduct = new UserProduct 
+        // {
+        //     User = user,
+        //     Product = product
+        // };
+        
+        // return View(userProduct);
+        // 2- Tuple Nesne --> C# ın getirmiş olduğu birden fazla veriyi taşınmasını sağlayan teknik
+        var userProduct = (product,user);
+        return View(userProduct);
     }
     #endregion
+
+    
 
     #region NonAction
     // Controller sınıfı içindeki her metod uygulama  tarafından bir action metod olarak algılanır

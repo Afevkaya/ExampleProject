@@ -1,1 +1,6 @@
-<h3>Tüm Ürünler</h3>
+@* @model ExampleProject.Models.ViewModels.UserProduct *@
+@model (ExampleProject.Models.Product p, ExampleProject.Models.User u)
+
+
+<p>@Model.p.Name</p>
+<p>@Model.u.Name</p>
